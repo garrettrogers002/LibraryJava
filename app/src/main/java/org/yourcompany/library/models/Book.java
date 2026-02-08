@@ -3,7 +3,7 @@ package org.yourcompany.library.models;
 public class Book {
     String title;
     String author;
-    boolean isCheckedOut;
+    boolean isCheckedOut = false;
 
     public Book(String title, String author) {
         this.title = title;

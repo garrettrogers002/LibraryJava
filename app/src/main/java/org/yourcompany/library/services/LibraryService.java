@@ -9,12 +9,13 @@ public class LibraryService {
     static ArrayList<String> titleList = new ArrayList<>();
     static String bookTitle;
     static int counter = 0;
+    static int indexer = 0;
+    static Book daBook;
 
     public static void addBook(String name, String author) {
         Book newObj = new Book(name, author);
         bookList.add(newObj);
         bookTitle = newObj.getTitle();
-        // System.out.println(bookTitle);
         titleList.add(bookTitle);
         System.out.println(titleList);
     }
@@ -38,23 +39,28 @@ public class LibraryService {
             arr[counter] = title;
             counter++;
         });
-        counter = 1;
+        counter = 0;
         return arr;
-        
-
-        // System.out.println("\n\ntotal matches: "+ titleMatches.size()+"\n");
-        // titleMatches.forEach(title -> {
-        //     System.out.println(counter+". "+title);
-        //     counter++;
-        // });
-        // System.out.println("\n\n\n");
-        // counter = 1;
     }
     public static void viewCollection() {
         titleList.forEach(System.out::println);
     }
 
     public static void checkoutBook(String name) {
-        System.out.println("placeholder - checkoutBook()");
+        System.out.println("placeholder - checkoutBook()"); // i forgot why i have this  here
+    }
+    public static Book selectBook(String trueBookTitle) {
+        
+        System.out.println("Selected "+trueBookTitle+"\n\n");
+        
+        bookList.forEach(book -> { // probably more efficient to use indexing or something
+            if (trueBookTitle.equals(book.getTitle())) {
+                String statement = (book.getIsCheckedOut()) ? " is checked out" : " is in stock";
+                System.out.println(book.getTitle()+statement);
+                daBook = bookList.get(indexer);
+            }
+            indexer++;
+        });
+        return daBook;
     }
 }

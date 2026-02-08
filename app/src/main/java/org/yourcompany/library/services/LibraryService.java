@@ -19,16 +19,21 @@ public class LibraryService {
     }
 
     public static void findBook(String name) {
+        ArrayList<String> titleMatches = new ArrayList<>();
+        String lowercaseName = name.toLowerCase();
         bookList.forEach(book -> {
-            if (book.getTitle().equals(name)) {
+            String lowercaseTitle = book.getTitle().toLowerCase();
+            if (lowercaseTitle.contains(lowercaseName)) {
                 String bookName = book.getTitle();
                 String bookAuthor = book.getAuthor();
-                System.out.println(bookName+ " written by "+bookAuthor);
+                titleMatches.add(bookName+ " written by "+bookAuthor);
             }
         });
+        System.out.println("total matches: "+ titleMatches.size());
+        titleMatches.forEach(System.out::println); // TODO maybe add indentation at somepoint
     }
     public static void viewCollection() {
-        System.out.println(bookList);
+        titleList.forEach(System.out::println);
     }
 
     public static void checkoutBook(String name) {

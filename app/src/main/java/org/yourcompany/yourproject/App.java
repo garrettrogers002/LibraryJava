@@ -8,6 +8,8 @@ public class App {
     static int selection = 0;
     static String author;
     static String title;
+    static String[] matchList;
+    static int counter = 1;
 
     public static void main(String[] args) {
         try (Scanner s = new Scanner(System.in)) {
@@ -35,11 +37,15 @@ public class App {
                         LibraryService.addBook(title, author);
                     }
                     case 2 -> {
-                        System.out.println("you chose option2");
+                        System.out.println("you chose option 2");
                         System.out.print("Enter book title (CASE SENSITIVE): ");
                         title = s.nextLine();
 
-                        LibraryService.findBook(title);
+                        matchList = LibraryService.findBook(title);
+                        for (String name : matchList) {
+                            System.out.println(counter+" "+name);
+                            counter++;
+                        }
                     }
                     case 3 -> {
                         LibraryService.viewCollection();

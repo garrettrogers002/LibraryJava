@@ -46,6 +46,7 @@ public class App {
                             System.out.println(counter+" "+name);
                             counter++;
                         }
+                        counter = 1;
                     }
                     case 3 -> {
                         LibraryService.viewCollection();

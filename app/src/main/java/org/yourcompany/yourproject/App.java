@@ -51,7 +51,7 @@ public class App {
                         counter = 1;
 
                         System.out.println("\n");
-                        System.out.print("choose which book: ");
+                        System.out.print("choose which book (1/2/...): ");
                         choice = Integer.parseInt(s.nextLine());
                         trueBookTitle = matchList[choice-1];
 

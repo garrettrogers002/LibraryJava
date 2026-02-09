@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.yourcompany.library.models.Book;
 
 public class LibraryService {
-    static ArrayList<Book> bookList = new ArrayList<>();
-    static ArrayList<String> titleList = new ArrayList<>();
-    static String bookTitle;
-    static int counter = 0;
-    static int indexer = 0;
-    static Book daBook;
+    ArrayList<Book> bookList = new ArrayList<>();
+    ArrayList<String> titleList = new ArrayList<>();
+    String bookTitle;
+    int counter = 0;
+    int indexer = 0;
+    Book daBook;
 
-    public static void addBook(String name, String author) {
+    public void addBook(String name, String author) {
         Book newObj = new Book(name, author);
         bookList.add(newObj);
         bookTitle = newObj.getTitle();
@@ -20,7 +20,7 @@ public class LibraryService {
         System.out.println(titleList);
     }
 
-    public static String[] findBook(String name) {
+    public String[] findBook(String name) {
         ArrayList<String> titleMatches = new ArrayList<>();
         String lowercaseName = name.toLowerCase();
         bookList.forEach(book -> {
@@ -42,14 +42,14 @@ public class LibraryService {
         counter = 0;
         return arr;
     }
-    public static void viewCollection() {
+    public void viewCollection() {
         titleList.forEach(System.out::println);
     }
 
-    public static void checkoutBook(String name) {
+    public void checkoutBook(String name) {
         System.out.println("placeholder - checkoutBook()"); // i forgot why i have this  here
     }
-    public static Book selectBook(String trueBookTitle) {
+    public Book selectBook(String trueBookTitle) {
         
         System.out.println("Selected "+trueBookTitle+"\n\n");
         

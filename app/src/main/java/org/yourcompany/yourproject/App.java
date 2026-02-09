@@ -17,7 +17,7 @@ public class App {
     public static void main(String[] args) {
         try (Scanner s = new Scanner(System.in)) {
             System.out.println("Welcome to Libary");
-
+            LibraryService libraryService = new LibraryService();
             while (choice != 4) {
                 System.out.println("1. Add book");
                 System.out.println("2. Find book");
@@ -36,14 +36,14 @@ public class App {
                         System.out.print("Enter book author: ");
                         author = s.nextLine();
 
-                        LibraryService.addBook(title, author);
+                        libraryService.addBook(title, author);
                     }
                     case 2 -> {
                         System.out.println("you chose option 2");
                         System.out.print("Enter book title (CASE SENSITIVE): ");
                         title = s.nextLine();
 
-                        matchList = LibraryService.findBook(title);
+                        matchList = libraryService.findBook(title);
                         for (String name : matchList) {
                             System.out.println(counter+" "+name);
                             counter++;
@@ -55,7 +55,7 @@ public class App {
                         choice = Integer.parseInt(s.nextLine());
                         trueBookTitle = matchList[choice-1];
 
-                        daBook = LibraryService.selectBook(trueBookTitle); // need to see if it's checked out
+                        daBook = libraryService.selectBook(trueBookTitle); // need to see if it's checked out
                         // then create a switch statement based on result
                         System.out.print("Would you like to checkout "+daBook.getTitle()+"? (Y/N) ");
                         String selection = s.nextLine();
@@ -71,7 +71,7 @@ public class App {
                         }
                     }
                     case 3 -> {
-                        LibraryService.viewCollection();
+                        libraryService.viewCollection();
                     }
                     case 4 -> {
                         System.out.println("exiting now...");

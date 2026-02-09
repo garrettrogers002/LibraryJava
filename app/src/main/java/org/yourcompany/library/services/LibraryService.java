@@ -51,7 +51,7 @@ public class LibraryService {
     }
     public Book selectBook(String trueBookTitle) {
         
-        System.out.println("Selected "+trueBookTitle+"\n\n");
+        System.out.println("Selected "+trueBookTitle);
         
         bookList.forEach(book -> { // probably more efficient to use indexing or something
             if (trueBookTitle.equals(book.getTitle())) {

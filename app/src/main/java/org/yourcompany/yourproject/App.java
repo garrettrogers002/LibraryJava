@@ -40,7 +40,7 @@ public class App {
                     }
                     case 2 -> {
                         System.out.println("you chose option 2");
-                        System.out.print("Enter book title (CASE SENSITIVE): ");
+                        System.out.print("Enter book title: ");
                         title = s.nextLine();
 
                         matchList = libraryService.findBook(title);
@@ -50,7 +50,7 @@ public class App {
                         }
                         counter = 1;
 
-                        System.out.println("\n\n");
+                        System.out.println("\n");
                         System.out.print("choose which book: ");
                         choice = Integer.parseInt(s.nextLine());
                         trueBookTitle = matchList[choice-1];

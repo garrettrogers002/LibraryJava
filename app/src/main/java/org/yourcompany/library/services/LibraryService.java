@@ -1,12 +1,13 @@
 package org.yourcompany.library.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.yourcompany.library.models.Book;
 
 public class LibraryService {
-    ArrayList<Book> bookList = new ArrayList<>();
-    ArrayList<String> titleList = new ArrayList<>();
+    List<Book> bookList = new ArrayList<>();
+    List<String> titleList = new ArrayList<>();
     String bookTitle;
     int counter = 0;
     int indexer = 0;
@@ -21,7 +22,7 @@ public class LibraryService {
     }
 
     public String[] findBook(String name) {
-        ArrayList<String> titleMatches = new ArrayList<>();
+        List<String> titleMatches = new ArrayList<>();
         String lowercaseName = name.toLowerCase();
         bookList.forEach(book -> {
             String lowercaseTitle = book.getTitle().toLowerCase();

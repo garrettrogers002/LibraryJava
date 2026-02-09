@@ -19,10 +19,10 @@ public class Book {
         return isCheckedOut;
     }
     public void checkOut() {
-        this.isCheckedOut = true;
+        isCheckedOut = true;
     }
     public void returnBook() {
-        this.isCheckedOut = false;
+        isCheckedOut = false;
     }
 }
 

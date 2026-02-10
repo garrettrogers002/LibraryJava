@@ -7,14 +7,14 @@ import org.yourcompany.library.models.Book;
 import org.yourcompany.library.services.LibraryService;
 
 public class App {
-    static int choice = 0;
-    static String author;
-    static String title;
-    static List<Book> matchList;
-    static int counter = 1;
-    static Book trueBook;
+       public static void main(String[] args) {
+        int choice = 0;
+        String author;
+        String title;
+        List<Book> matchList;
+        int counter = 1;
+        Book trueBook;
 
-    public static void main(String[] args) {
         try (Scanner s = new Scanner(System.in)) {
             System.out.println("Welcome to Libary");
             LibraryService libraryService = new LibraryService();

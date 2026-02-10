@@ -1,18 +1,19 @@
 package org.yourcompany.yourproject;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.yourcompany.library.models.Book;
-import org.yourcompany.library.services.LibraryService;;
+import org.yourcompany.library.services.LibraryService;
 
 public class App {
     static int choice = 0;
     static String author;
     static String title;
-    static String[] matchList;
+    static List<Book> matchList;
     static int counter = 1;
-    static String trueBookTitle;
-    static Book daBook;
+    static Book trueBook;
+    // static Book daBook;
 
     public static void main(String[] args) {
         try (Scanner s = new Scanner(System.in)) {
@@ -43,9 +44,9 @@ public class App {
                         System.out.print("Enter book title: ");
                         title = s.nextLine();
 
-                        matchList = libraryService.findBook(title);
-                        for (String name : matchList) {
-                            System.out.println(counter+" "+name);
+                        matchList = libraryService.findBook(title); // need to fix this
+                        for (Book book : matchList) {
+                            System.out.println(counter+" "+book.getTitle());
                             counter++;
                         }
                         counter = 1;
@@ -53,17 +54,17 @@ public class App {
                         System.out.println("\n");
                         System.out.print("choose which book (1/2/...): ");
                         choice = Integer.parseInt(s.nextLine());
-                        trueBookTitle = matchList[choice-1];
+                        trueBook = matchList.get(choice-1);
 
-                        daBook = libraryService.selectBook(trueBookTitle); // need to see if it's checked out
+                        // daBook = libraryService.selectBook(trueBook); // need to see if it's checked out
                         // then create a switch statement based on result
-                        System.out.print("Would you like to checkout "+daBook.getTitle()+"? (Y/N) ");
+                        System.out.print("Would you like to checkout "+trueBook.getTitle()+"? (Y/N) ");
                         String selection = s.nextLine();
 
                         switch (selection) {
                             case "Y" -> {
-                                daBook.checkOut();
-                                System.out.println(daBook.getTitle()+" is now checked out");
+                                trueBook.checkOut();
+                                System.out.println(trueBook.getTitle()+" is now checked out");
                             }
                             case "N" -> {
                                 System.out.println("Back to main menu...");

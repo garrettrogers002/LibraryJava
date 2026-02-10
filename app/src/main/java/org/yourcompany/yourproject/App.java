@@ -13,7 +13,6 @@ public class App {
     static List<Book> matchList;
     static int counter = 1;
     static Book trueBook;
-    // static Book daBook;
 
     public static void main(String[] args) {
         try (Scanner s = new Scanner(System.in)) {
@@ -26,8 +25,11 @@ public class App {
                 System.out.println("4. Exit");
                 System.out.print("Choose (1/2/3/4): ");
 
-                choice = Integer.parseInt(s.nextLine());
-
+                try {
+                    choice = Integer.parseInt(s.nextLine());
+                } catch (NumberFormatException e) {
+                    choice = 0;
+                }
                 switch (choice) {
                     case 1 -> {
                         System.out.println("you chose option 1");
@@ -44,7 +46,7 @@ public class App {
                         System.out.print("Enter book title: ");
                         title = s.nextLine();
 
-                        matchList = libraryService.findBook(title); // need to fix this
+                        matchList = libraryService.findBook(title);
                         for (Book book : matchList) {
                             System.out.println(counter+" "+book.getTitle());
                             counter++;
@@ -53,22 +55,25 @@ public class App {
 
                         System.out.println("\n");
                         System.out.print("choose which book (1/2/...): ");
-                        choice = Integer.parseInt(s.nextLine());
-                        trueBook = matchList.get(choice-1);
+                        try {
+                            choice = Integer.parseInt(s.nextLine());
+                            trueBook = matchList.get(choice-1);
 
-                        // daBook = libraryService.selectBook(trueBook); // need to see if it's checked out
-                        // then create a switch statement based on result
-                        System.out.print("Would you like to checkout "+trueBook.getTitle()+"? (Y/N) ");
-                        String selection = s.nextLine();
+                            System.out.print("Would you like to checkout "+trueBook.getTitle()+"? (Y/N) ");
+                            String selection = s.nextLine();
 
-                        switch (selection) {
-                            case "Y" -> {
-                                trueBook.checkOut();
-                                System.out.println(trueBook.getTitle()+" is now checked out");
+                            switch (selection) {
+                                case "Y" -> {
+                                    trueBook.checkOut();
+                                    System.out.println(trueBook.getTitle()+" is now checked out");
+                                }
+                                case "N" -> {
+                                    System.out.println("Back to main menu...");
+                                }
                             }
-                            case "N" -> {
-                                System.out.println("Back to main menu...");
-                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Not a valid input, starting over...");
+                            choice = 0;
                         }
                     }
                     case 3 -> {
@@ -85,9 +90,3 @@ public class App {
 
     }
 }
-/*
-todo
------------------
-finish checking out book functionality
-add return book functionality ?
-*/

@@ -12,6 +12,7 @@ public class App {
         String author;
         String title;
         List<Book> matchList;
+        int matchListSize;
         int counter = 1;
         Book trueBook;
 
@@ -47,19 +48,14 @@ public class App {
                         title = s.nextLine();
 
                         matchList = libraryService.findBook(title);
-                        
-                        if (matchList.size() != 1) {
-                            for (Book book : matchList) {
-                                System.out.println(counter+" "+book.getTitle());
-                                counter++;
-                            }
-                            counter = 1;
+                        matchListSize = matchList.size();
 
-                            System.out.println("\n");
-                            System.out.print("choose which book (1/2/...): ");
-                            try {
-                                choice = Integer.parseInt(s.nextLine());
-                                trueBook = matchList.get(choice-1);
+                        switch (matchListSize) {
+                            case 0 -> {
+                                System.out.println("No books titles found");
+                            }
+                            case 1 -> {
+                                trueBook = matchList.get(0);
 
                                 System.out.print("Would you like to checkout "+trueBook.getTitle()+"? (Y/N) ");
                                 String selection = s.nextLine().toLowerCase();
@@ -73,25 +69,38 @@ public class App {
                                         System.out.println("Back to main menu...");
                                     }
                                 }
-                            } catch (NumberFormatException e) {
-                                System.out.println("Not a valid input, starting over...");
-                                choice = 0;
                             }
-                        } else {
-                            trueBook = matchList.get(0);
-
-                            System.out.print("Would you like to checkout "+trueBook.getTitle()+"? (Y/N) ");
-                            String selection = s.nextLine().toLowerCase();
-
-                            switch (selection) {
-                                case "y" -> {
-                                    trueBook.checkOut();
-                                    System.out.println(trueBook.getTitle()+" is now checked out");
+                            default -> {
+                                for (Book book : matchList) {
+                                    System.out.println(counter+" "+book.getTitle());
+                                    counter++;
                                 }
-                                case "n" -> {
-                                    System.out.println("Back to main menu...");
+                                counter = 1;
+
+                                System.out.println("\n");
+                                System.out.print("choose which book (1/2/...): ");
+                                try {
+                                    choice = Integer.parseInt(s.nextLine());
+                                    trueBook = matchList.get(choice-1);
+
+                                    System.out.print("Would you like to checkout "+trueBook.getTitle()+"? (Y/N) ");
+                                    String selection = s.nextLine().toLowerCase();
+
+                                    switch (selection) {
+                                        case "y" -> {
+                                            trueBook.checkOut();
+                                            System.out.println(trueBook.getTitle()+" is now checked out");
+                                        }
+                                        case "n" -> {
+                                            System.out.println("Back to main menu...");
+                                        }
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Not a valid input, starting over...");
+                                    choice = 0;
                                 }
                             }
+                                
                         }
                     }
                     case 3 -> {

@@ -9,8 +9,6 @@ public class LibraryService {
     List<Book> bookList = new ArrayList<>();
     List<String> titleList = new ArrayList<>();
     String bookTitle;
-    int indexer = 0;
-    Book daBook;
 
     public void addBook(String name, String author) {
         Book newObj = new Book(name, author);
@@ -37,19 +35,5 @@ public class LibraryService {
 
     public void checkoutBook(String name) {
         System.out.println("placeholder - checkoutBook()");
-    }
-    public Book selectBook(String trueBookTitle) {
-        
-        System.out.println("Selected "+trueBookTitle);
-        
-        bookList.forEach(book -> {
-            if (trueBookTitle.equals(book.getTitle())) {
-                String statement = (book.getIsCheckedOut()) ? " is checked out" : " is in stock";
-                System.out.println(book.getTitle()+statement);
-                daBook = bookList.get(indexer);
-            }
-            indexer++;
-        });
-        return daBook;
     }
 }
